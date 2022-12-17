@@ -1,7 +1,8 @@
 const express = require("express")
 const cors = require("cors")
 const app = express()
-const logger = require("./loggerMidleware")
+const logger = require("./midlewares/loggerMidleware")
+const unknownEndpoint = require("./midlewares/unknownEndpoint")
 
 app.use(cors())
 
@@ -94,11 +95,7 @@ app.delete("/api/notes/:id", (req, res) => {
 	res.status(204).end()
 })
 
-app.use((req, res) => {
-	res.status(404).json({
-		error: 'Not Found'
-	})
-})
+app.use(unknownEndpoint)
 
 const PORT = 3001
 app.listen(PORT, () => {
