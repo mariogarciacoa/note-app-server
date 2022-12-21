@@ -93,7 +93,7 @@ app.delete("/api/notes/:id", (req, res) => {
 	notes = notes.filter((note) => note.id !== id)
 
 	res.status(204).end()
-})
+}) 
 
 app.use(unknownEndpoint)
 
